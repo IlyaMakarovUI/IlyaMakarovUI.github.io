@@ -1,2 +1,2 @@
-body{margin: 0;}
-.test{font-size: 80px; color: red;}
+body{margin: 0; display: grid;}
+.test{font-size: 80px; color: red; text-align: center;}
