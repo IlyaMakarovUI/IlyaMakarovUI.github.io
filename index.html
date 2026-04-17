@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+    if (window.location.hash) {
+        // Убираем якорь из URL, сохраняя текущее состояние
+        history.pushState("", document.title, window.location.pathname + window.location.search);
+        
+        // Опционально: скроллим к элементу вручную, если нужно
+        // var element = document.querySelector(window.location.hash);
+        // if (element) element.scrollIntoView();
+    }
+});
+</script>
   <!-- Google Analytics — deferred until idle so it doesn't block rendering -->
   <script>
     window.dataLayer = window.dataLayer || [];
