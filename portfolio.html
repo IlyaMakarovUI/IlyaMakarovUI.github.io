@@ -68,7 +68,7 @@
     }
 
     /* ============================================
-       RESET & BASE (Исправлен баг со скроллом)
+       RESET & BASE
     ============================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     
@@ -124,14 +124,8 @@
     body.is-hovering .cursor-label-dot { background: rgba(255,255,255,0.6); }
 
     /* ============================================
-       PRELOADER & NAV
+       NAV
     ============================================ */
-    #preloader { position: fixed; inset: 0; background: var(--bg); z-index: 9000; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px; }
-    .pl-name { font-family: 'Syne', sans-serif; font-size: clamp(32px, 6vw, 72px); font-weight: 800; letter-spacing: -0.045em; overflow: hidden; text-align: center; }
-    .pl-name span { display: inline-block; transform: translateY(110%); }
-    .pl-bar-wrap { width: 160px; height: 1px; background: var(--border); overflow: hidden; }
-    .pl-bar { height: 100%; width: 0; background: var(--fg); transition: width 0.9s cubic-bezier(0.76, 0, 0.24, 1); }
-    
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 22px 44px; display: flex; justify-content: space-between; align-items: center; transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1); }
     nav.scrolled { top: 16px; left: 22%; right: 22%; gap: 48px; padding: 14px 36px; border-radius: 100px; background: rgba(12,12,11,0.80); backdrop-filter: blur(20px); box-shadow: 0 4px 24px rgba(0,0,0,0.25); }
     [data-theme="light"] nav.scrolled { background: rgba(240,237,229,0.85); box-shadow: 0 4px 24px rgba(0,0,0,0.10); }
@@ -152,7 +146,7 @@
     .s-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
     .s-title { font-family: 'Syne', sans-serif; font-size: clamp(52px, 8vw, 110px); font-weight: 800; letter-spacing: -0.045em; line-height: 0.88; }
     .s-title .tl { display: block; }
-    .s-title .tl span { display: block; transform: translateY(110%); }
+    .s-title .tl span { display: block; }
 
     #work { padding: 120px 44px; }
     #contact { padding: 120px 44px 80px; }
@@ -176,6 +170,7 @@
     .cf-right a { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); transition: color 0.3s; }
     .cf-right a:hover { color: var(--fg); }
     .copy { font-size: 11px; color: var(--muted); margin-top: 32px; text-align: center; padding-top: 32px; border-top: 1px solid var(--border); }
+
     @media (max-width: 900px) {
       nav { padding: 18px 24px; }
       nav.scrolled { top: 12px; left: 16px; right: 16px; padding: 12px 20px; }
@@ -234,7 +229,7 @@
     .modal-container {
       position: relative; width: 100%; max-width: 100%;
       background: var(--bg); border: none; border-radius: 0;
-      height: 100%; max-height: 100%; /* Исправлено для мобилок */
+      height: 100%; max-height: 100%;
       overflow-y: auto;
       transform: translateY(20px); transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
     }
@@ -324,7 +319,6 @@
        СУПЕР-УЗКИЕ ЭКРАНЫ (МЕНЕЕ 480px)
     ============================================ */
     @media (max-width: 480px) {
-      /* Динамический размер текста и принудительный перенос */
       .s-title { font-size: 15vw; }
       .contact-headline { font-size: 14vw; }
       .s-title, .contact-headline {
@@ -333,7 +327,6 @@
         hyphens: auto;
       }
       
-      /* Компактное меню */
       nav { padding: 16px 16px; }
       nav.scrolled { left: 12px; right: 12px; padding: 10px 16px; }
       .nav-logo { font-size: 13px; }
@@ -344,11 +337,6 @@
   <link rel="icon" type="image/x-icon" href="Favicon.png">
 </head>
 <body>
-
-  <div id="preloader" aria-hidden="true">
-    <div class="pl-name"><span>Илья Макаров</span></div>
-    <div class="pl-bar-wrap"><div class="pl-bar" id="plBar"></div></div>
-  </div>
 
   <div class="cursor" id="cursor" aria-hidden="true">
     <div class="cursor-arrow">
@@ -389,27 +377,6 @@
     <div class="projects">
       <section class="portfolio-grid">
               
-        <article class="portfolio-card" data-project-id="1" data-cursor="hi">
-          <div class="media-wrapper">
-            <img src="gray.webp" alt="Обложка проекта" class="media-static">
-            <video src="Drone.webm" muted loop playsinline class="media-video"></video>
-          </div>
-          <div class="card-footer">
-            <span class="project-title">VTOL Drone Concept</span>
-            <div class="stats"><span>3D / Motion</span></div>
-          </div>
-        </article>
-
-        <article class="portfolio-card" data-project-id="2" data-cursor="hi">
-          <div class="media-wrapper">
-            <img src="gray.webp" alt="Обложка проекта" class="media-static">
-          </div>
-          <div class="card-footer">
-            <span class="project-title">Admiral Eco System</span>
-            <div class="stats"><span>Typography</span></div>
-          </div>
-        </article>
-
         <article class="portfolio-card" data-project-id="1" data-cursor="hi">
           <div class="media-wrapper">
             <img src="gray.webp" alt="Обложка проекта" class="media-static">
@@ -583,11 +550,7 @@
       modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
     });
-  </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script>
     /* ---- THEME ---- */
     const html   = document.documentElement;
     const tBtn   = document.getElementById('themeBtn');
@@ -642,54 +605,6 @@
           }
         }
       });
-    }
-
-    /* ---- PRELOADER & GSAP ---- */
-    const preloader = document.getElementById('preloader');
-    const plBar     = document.getElementById('plBar');
-    const plName    = document.querySelector('.pl-name span');
-    gsap.registerPlugin(ScrollTrigger);
-
-    if (sessionStorage.getItem('dvdrod_visited')) {
-      preloader.style.display = 'none';
-      initScroll();
-    } else {
-      sessionStorage.setItem('dvdrod_visited', '1');
-      gsap.to(plName, { y: 0, duration: 0.7, ease: 'power3.out', delay: 0.1 });
-      setTimeout(() => { plBar.style.width = '100%'; }, 150);
-      setTimeout(() => {
-        gsap.to(preloader, { yPercent: -100, duration: 0.9, ease: 'power3.inOut', onComplete: () => {
-          preloader.style.display = 'none';
-          initScroll();
-        }});
-      }, 1300);
-    }
-
-    function initScroll() {
-      gsap.utils.toArray('.s-title').forEach(el => {
-        gsap.to(el.querySelectorAll('.tl span'), {
-          y: 0, duration: 1.05, stagger: 0.08, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%' }
-        });
-      });
-      
-      gsap.utils.toArray('.contact-headline .tl span').forEach((el, i) => {
-        gsap.fromTo(el,
-          { y: '110%' },
-          { y: '0%', duration: 0.9, delay: i * 0.12, ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 90%' }
-          }
-        );
-      });
-
-      gsap.fromTo('.contact-footer',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out',
-          scrollTrigger: { trigger: '.contact-footer', start: 'top 90%' }
-        }
-      );
-      
-      setTimeout(() => ScrollTrigger.refresh(), 400);
     }
 
     /* ---- NAV SCROLL STATE ---- */
