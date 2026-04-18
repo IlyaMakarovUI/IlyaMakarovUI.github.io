@@ -2,39 +2,25 @@
 <html lang="en">
 <head>
   <script>
-  window.addEventListener('load', () => {
+window.addEventListener('load', () => {
+    // Проверяем, есть ли в адресе хэш (например, #work)
     if (window.location.hash) {
-        const targetElement = document.querySelector(window.location.hash);
+        const hash = window.location.hash;
+        const targetElement = document.querySelector(hash);
+        
         if (targetElement) {
+            // 1. Делаем небольшую задержку и плавно скроллим к элементу
             setTimeout(() => {
                 targetElement.scrollIntoView({
                     behavior: 'smooth'
                 });
             }, 100);
+
+            // 2. МГНОВЕННО стираем якорь из URL без перезагрузки страницы
+            // replaceState меняет текущую запись в истории браузера
+            history.replaceState(null, null, window.location.pathname);
         }
     }
-});
-  </script>
-  <script>
-document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        // Отменяем стандартный переход по ссылке (чтобы не менялся URL)
-        e.preventDefault();
-
-        // Получаем ID секции из атрибута href (например, "#work")
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-
-        if (targetElement) {
-            // Плавно прокручиваем к элементу
-            targetElement.scrollIntoView({
-                behavior: 'smooth'
-            });
-            
-            // Опционально: если вы хотите обновить URL в истории браузера без перезагрузки страницы
-            // history.pushState(null, null, targetId); 
-        }
-    });
 });
 </script>
   <!-- Google Analytics — deferred until idle so it doesn't block rendering -->
