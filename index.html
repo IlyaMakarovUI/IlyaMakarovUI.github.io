@@ -3,32 +3,25 @@
 <head>
   <script>
 window.addEventListener('load', () => {
-    // Проверяем, есть ли хэш в URL
     if (window.location.hash) {
         const hash = window.location.hash;
         
-        // Сразу убираем хэш из адресной строки для красоты
         history.replaceState(null, null, window.location.pathname);
 
         const targetElement = document.querySelector(hash);
         
         if (targetElement) {
-            // Увеличиваем задержку (до 400мс), чтобы страница 100% успела "выстроиться"
             setTimeout(() => {
-                // Высота вашей фиксированной шапки в пикселях. 
-                // Замените 80 на реальную высоту вашего <nav> (например, 100 или 60)
                 const headerOffset = 77; 
                 
-                // Вычисляем точную позицию элемента с учетом прокрутки и шапки
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.scrollY - headerOffset;
           
-                // Плавно скроллим к нужной точке
                 window.scrollTo({
                      top: offsetPosition,
                      behavior: "smooth"
                 });
-            }, 400); // Если все равно недокручивает, попробуйте поставить 500 или 600
+            }, 400); 
         }
     }
 });
@@ -975,7 +968,7 @@ window.addEventListener('load', () => {
 
     <div class="hero-bottom">
       <p class="hero-desc">
-        <span>Мультидисциплинарный графический дизайнер. Разрабатываю комплексные решения на стыке UI и визуального дизайна, брендинга и анимации. Создаю масштабируемые дизайн-системы и целостную графику для бизнеса.</span>
+        <span>Мультидисциплинарный графический дизайнер. Разрабатываю комплексные решения на стыке UI и визуального дизайна, брендинга и анимации.</span>
       </p>
       <div class="hero-right">
         <div class="pill available"><span class="pill-dot"></span>Открыт для работы</div>
