@@ -3,22 +3,32 @@
 <head>
   <script>
 window.addEventListener('load', () => {
-    // Проверяем, есть ли в адресе хэш (например, #work)
+    // Проверяем, есть ли хэш в URL
     if (window.location.hash) {
         const hash = window.location.hash;
+        
+        // Сразу убираем хэш из адресной строки для красоты
+        history.replaceState(null, null, window.location.pathname);
+
         const targetElement = document.querySelector(hash);
         
         if (targetElement) {
-            // 1. Делаем небольшую задержку и плавно скроллим к элементу
+            // Увеличиваем задержку (до 400мс), чтобы страница 100% успела "выстроиться"
             setTimeout(() => {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
+                // Высота вашей фиксированной шапки в пикселях. 
+                // Замените 80 на реальную высоту вашего <nav> (например, 100 или 60)
+                const headerOffset = 77; 
+                
+                // Вычисляем точную позицию элемента с учетом прокрутки и шапки
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
+          
+                // Плавно скроллим к нужной точке
+                window.scrollTo({
+                     top: offsetPosition,
+                     behavior: "smooth"
                 });
-            }, 100);
-
-            // 2. МГНОВЕННО стираем якорь из URL без перезагрузки страницы
-            // replaceState меняет текущую запись в истории браузера
-            history.replaceState(null, null, window.location.pathname);
+            }, 400); // Если все равно недокручивает, попробуйте поставить 500 или 600
         }
     }
 });
