@@ -2,19 +2,25 @@
 <html lang="en">
 <head>
   <script>
-document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-
+window.addEventListener('load', () => {
+    // Проверяем, есть ли в адресе хэш (например, #work)
+    if (window.location.hash) {
+        const hash = window.location.hash;
+        const targetElement = document.querySelector(hash);
+        
         if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth'
-            });
+            // 1. Делаем небольшую задержку и плавно скроллим к элементу
+            setTimeout(() => {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }, 100);
+
+            // 2. МГНОВЕННО стираем якорь из URL без перезагрузки страницы
+            // replaceState меняет текущую запись в истории браузера
+            history.replaceState(null, null, window.location.pathname);
         }
-    });
+    }
 });
 </script>
   <script>
