@@ -2,6 +2,20 @@
 <html lang="en">
 <head>
   <script>
+  window.addEventListener('load', () => {
+    if (window.location.hash) {
+        const targetElement = document.querySelector(window.location.hash);
+        if (targetElement) {
+            setTimeout(() => {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
+    }
+});
+  </script>
+  <script>
 document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         // Отменяем стандартный переход по ссылке (чтобы не менялся URL)
