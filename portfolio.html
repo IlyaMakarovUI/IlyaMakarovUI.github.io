@@ -3,21 +3,15 @@
 <head>
   <script>
 window.addEventListener('load', () => {
-    // Проверяем, есть ли в адресе хэш (например, #work)
     if (window.location.hash) {
         const hash = window.location.hash;
-        const targetElement = document.querySelector(hash);
-        
+        const targetElement = document.querySelector(hash);      
         if (targetElement) {
-            // 1. Делаем небольшую задержку и плавно скроллим к элементу
             setTimeout(() => {
                 targetElement.scrollIntoView({
                     behavior: 'smooth'
                 });
             }, 100);
-
-            // 2. МГНОВЕННО стираем якорь из URL без перезагрузки страницы
-            // replaceState меняет текущую запись в истории браузера
             history.replaceState(null, null, window.location.pathname);
         }
     }
@@ -537,11 +531,11 @@ window.addEventListener('load', () => {
             
             <div class="shot-media-stack">
               <video src="Drone.webm" autoplay loop muted playsinline></video>
-              <img src="Drone.webp" alt="Project detail 1">
-              <img src="B1.webp" alt="Project detail 2">
-              <img src="B2.webp" alt="Project detail 3">
-              <img src="B3.webp" alt="Project detail 4">
-              <img src="Conc.webp" alt="Project detail 2">
+              <img src="/images/01/Drone.webp" alt="Project detail 1">
+              <img src="/images/01/B1.webp" alt="Project detail 2">
+              <img src="/images/01/B2.webp" alt="Project detail 3">
+              <img src="/images/01/B3.webp" alt="Project detail 4">
+              <img src="/images/01/Conc.webp" alt="Project detail 2">
             </div>
           </div>
         `,
