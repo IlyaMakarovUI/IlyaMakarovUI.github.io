@@ -243,11 +243,18 @@ window.addEventListener('load', () => {
     .modal-overlay.is-open { opacity: 1; visibility: visible; }
 
     .modal-container {
-      position: relative; width: 100%; max-width: 100%;
-      background: var(--bg); border: none; border-radius: 0;
-      height: 100%; max-height: 100%;
+      position: relative; 
+      width: 100%; 
+      max-width: 100%;
+      background: var(--bg); 
+      border: none; 
+      border-radius: 0;
+      height: 100%; 
+      max-height: 100%;
       overflow-y: auto;
-      transform: translateY(20px); transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+      overscroll-behavior: none; 
+      transform: translateY(20px); 
+      transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
     }
     .modal-overlay.is-open .modal-container { transform: translateY(0); }
     
@@ -699,6 +706,7 @@ The Solution: I adopted an Eco-Futurism approach mixed with Glassmorphism. The c
             modalContent.innerHTML = content;
             modal.classList.add('is-open');
             document.body.style.overflow = 'hidden'; 
+            document.documentElement.style.overflow = 'hidden';
             modalContainer.scrollTop = 0; 
           }
         });
@@ -707,6 +715,7 @@ The Solution: I adopted an Eco-Futurism approach mixed with Glassmorphism. The c
       const closeModal = () => {
         modal.classList.remove('is-open');
         document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
         setTimeout(() => { modalContent.innerHTML = ''; }, 400); 
       };
 
