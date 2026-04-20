@@ -551,7 +551,7 @@ window.addEventListener('load', () => {
       /* opacity + transform set via gsap.set() in initScroll() */
       transition: border-color 0.4s ease;
     }
-    .pcard:hover { border-color: var(--border-hover); }
+    .pcard:hover { background-color: rgba(255, 255, 255, 0.2); border-color: var(--border-hover); }
     .pcard--wip { pointer-events: none; }
     .pcard--wip .p-arrow { display: none; }
     .wip-badge { display:inline-flex; align-items:center; gap:7px; font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#F59E0B; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.3); border-radius:100px; padding:5px 12px; }
@@ -1020,7 +1020,7 @@ window.addEventListener('load', () => {
     <div class="projects">
 
       <!-- 02 - NeoTaste Quests -->
-      <article class="pcard p-nt-quests" data-index="1" onclick="window.location='https://dribbble.com/ilya_makarov'" style="cursor:none;">
+      <article class="pcard p-nt-quests" data-index="1" onclick="window.location='/portfolio'" style="cursor:none;">
         <div class="pcard-inner">
           <div class="pcard-info">
             <div class="pcard-top">
